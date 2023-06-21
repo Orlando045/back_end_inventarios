@@ -1,11 +1,10 @@
-import { Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, Entity } from "typeorm";
+import { Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, Entity, ManyToMany } from "typeorm";
 import { MateriaP } from "./materia_p.entity";
+import { Recepcione } from "src/recepciones/entities/recepcione.entity";
 
 @Entity()
 export class RegistrarP {
 
-
-    
     @PrimaryGeneratedColumn( 'uuid')
     id : string
 
@@ -21,11 +20,17 @@ export class RegistrarP {
    @Column()
    dateupdate:Date
 
-   @ManyToOne(
+   @ManyToMany(
     ()=> MateriaP,
     (materiap)=> materiap.resgitro
    )
-   materiap? : MateriaP;
+   materiap : MateriaP
+
+   @ManyToOne(
+    ()=> Recepcione,
+    (partida)=> partida.partidas
+   )
+   recepciones : Recepcione;
 
    
 }

@@ -22,12 +22,12 @@ dateCreate: string;
 dateUpdate: string;
 
 
-@OneToMany(
+@ManyToMany(
     () => RegistrarP,
     (registrarP)=> registrarP.materiap,
     {cascade: true}
 )
-resgitro?: RegistrarP[];
+resgitro?: RegistrarP;
    
 
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { RegistrarP } from "src/materia_p/entities/registrar-partidas.entity"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Recepcione {
@@ -18,6 +19,13 @@ export class Recepcione {
 
     @Column({name: 'fecha_actualizacion'})
     date_update: string
+
+    @OneToMany(
+        ()=> RegistrarP,
+      (entradasR)=> entradasR.recepciones, 
+      {cascade : true}
+    )
+    partidas = RegistrarP;
 }
 
 
